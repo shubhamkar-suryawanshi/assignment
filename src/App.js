@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import React, { useEffect, useRef } from 'react';
 import './App.css';
+import test from './test.mp4';
 
 function App() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    let options = {
+      rootMargin: '0px',
+      threshold: [0.25, 0.75],
+    };
+
+    let handlePlay = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          videoRef.current.play();
+        } else {
+          videoRef.current.pause();
+        }
+      });
+    };
+
+    let observer = new IntersectionObserver(handlePlay, options);
+
+    observer.observe(videoRef.current);
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="hero">
+        <h1>
+          To play the <strong>Video</strong>, click on the below button <br />
+          <strong>👇</strong>
+        </h1>
+        <button>
+          <a href="#gallery">Show Video</a>
+        </button>
+      </div>
+
+      <div id="gallery" className="video-container">
+        <video src={test} ref={videoRef}></video>
+      </div>
     </div>
   );
 }
