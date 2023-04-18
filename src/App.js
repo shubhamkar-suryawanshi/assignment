@@ -1,47 +1,121 @@
-import React, { useEffect, useRef } from 'react';
+import { createContext, useState } from 'react';
+import AddTaskForm from './components/AddTaskForm.js';
+import UpdateForm from './components/UpdateForm.js';
+import ToDo from './components/ToDo.js';
+import ReactSwitch from 'react-switch';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
-import test from './test.mp4';
+
+export const ThemeContext = createContext(null);
 
 function App() {
-  const videoRef = useRef(null);
+  // Theme change
+  const [theme, setTheme] = useState('dark');
 
-  useEffect(() => {
-    let options = {
-      rootMargin: '0px',
-      threshold: [0.25, 0.75],
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
+  };
+
+  // Tasks (ToDo List) State
+  const [toDo, setToDo] = useState([]);
+
+  // Temp State
+  const [newTask, setNewTask] = useState('');
+  const [updateData, setUpdateData] = useState('');
+
+  // Add task
+  const addTask = () => {
+    if (newTask) {
+      let num = toDo.length + 1;
+      let newEntry = { id: num, title: newTask, status: false };
+      setToDo([...toDo, newEntry]);
+      setNewTask('');
+      console.log(toDo);
+    }
+  };
+
+  // Delete task
+  const deleteTask = (id) => {
+    let newTasks = toDo.filter((task) => task.id !== id);
+    setToDo(newTasks);
+  };
+
+  // Mark task as done or completed
+  const markDone = (id) => {
+    let newTask = toDo.map((task) => {
+      if (task.id === id) {
+        return { ...task, status: !task.status };
+      }
+      return task;
+    });
+    setToDo(newTask);
+  };
+
+  // Cancel update
+  const cancelUpdate = () => {
+    setUpdateData('');
+  };
+
+  // Change task for update
+  const changeTask = (e) => {
+    let newEntry = {
+      id: updateData.id,
+      title: e.target.value,
+      status: updateData.status ? true : false,
     };
+    setUpdateData(newEntry);
+  };
 
-    let handlePlay = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          videoRef.current.play();
-        } else {
-          videoRef.current.pause();
-        }
-      });
-    };
-
-    let observer = new IntersectionObserver(handlePlay, options);
-
-    observer.observe(videoRef.current);
-  });
+  // Update task
+  const updateTask = () => {
+    let filterRecords = [...toDo].filter((task) => task.id !== updateData.id);
+    let updatedObject = [...filterRecords, updateData];
+    setToDo(updatedObject);
+    setUpdateData('');
+  };
 
   return (
-    <div className="App">
-      <div className="hero">
-        <h1>
-          To play the <strong>Video</strong>, click on the below button <br />
-          <strong>👇</strong>
-        </h1>
-        <button>
-          <a href="#gallery">Show Video</a>
-        </button>
-      </div>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className="container App" id={theme}>
+        <br />
+        <br />
+        <h2>CRUD App</h2>
+        <div className="switch">
+          <label> {theme === 'light' ? 'Light Mode' : 'Dark Mode'}</label>
+          <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} />
+        </div>
+        <br />
+        <br />
 
-      <div id="gallery" className="video-container">
-        <video src={test} ref={videoRef}></video>
+        {updateData && updateData ? (
+          <UpdateForm
+            updateData={updateData}
+            changeTask={changeTask}
+            updateTask={updateTask}
+            cancelUpdate={cancelUpdate}
+          />
+        ) : (
+          <AddTaskForm
+            newTask={newTask}
+            setNewTask={setNewTask}
+            addTask={addTask}
+          />
+        )}
+
+        {/* Display ToDos */}
+
+        {toDo && toDo.length ? '' : 'No Tasks...'}
+
+        <ToDo
+          toDo={toDo}
+          markDone={markDone}
+          setUpdateData={setUpdateData}
+          deleteTask={deleteTask}
+        />
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

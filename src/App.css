@@ -1,66 +1,88 @@
-.App {
-  margin: 0px;
-  padding: 0px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
+body {
+  background-color: #333;
+  color: #fff;
 }
 
-.hero {
-  padding-top: 25%;
+.App {
+  text-align: center;
   width: 100vw;
   height: 100vh;
-  background: url('https://images.unsplash.com/photo-1614850523296-d8c1af93d400?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8bGlnaHQlMjBjb2xvdXJ8ZW58MHx8MHx8&w=1000&q=80')
-    no-repeat;
-  background-size: cover;
-  box-sizing: border-box;
 }
 
-@media screen and (min-width: 751px) {
-  .hero {
-    padding-top: 10%;
-  }
+.taskBg {
+  background-color: #555;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 10px 140px 10px 15px;
+  text-align: left;
+  font-size: 22px;
+  position: relative;
 }
 
-.hero > h1 {
-  margin: 1% 7%;
+.taskBg div {
+  display: flex;
+  align-items: center;
 }
 
-strong {
-  font-size: xx-large;
+.taskNumber {
+  color: #999;
+  border: 1px solid #999;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  margin-right: 8px;
+  align-items: center;
+  justify-content: center;
 }
 
-.video-container {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+.taskBg .taskText {
+  flex: 1;
 }
 
-video {
-  width: 90%;
-  height: 90%;
-  object-fit: cover;
+.taskBg .done .taskText {
+  text-decoration: line-through;
+  opacity: 0.3;
 }
 
-button {
+.taskBg .iconsWrap {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  width: auto;
   display: inline-block;
-  background-color: aqua;
-  width: 30%;
-  padding: 10px 20px;
-  box-shadow: 4px 8px #888;
+}
+
+.taskBg .iconsWrap span {
+  display: inline-block;
+  margin: 0px 10px 0 10px;
   cursor: pointer;
+  color: #00ff89;
 }
 
-button > a {
-  text-decoration: none;
-  color: gray;
+.taskBg .iconsWrap span:hover {
+  color: yellow;
 }
 
-.container {
+.mr-20 {
+  margin-right: 20px;
+}
+
+#light {
+  background-color: #fff;
+  color: #333;
+}
+
+#dark {
+  background-color: #333;
+  color: #fff;
+}
+
+.switch {
   display: flex;
   justify-content: center;
-  align-items: center;
+  gap: 10px;
 }
