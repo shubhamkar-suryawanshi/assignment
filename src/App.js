@@ -1,121 +1,96 @@
-import { createContext, useState } from 'react';
-import AddTaskForm from './components/AddTaskForm.js';
-import UpdateForm from './components/UpdateForm.js';
-import ToDo from './components/ToDo.js';
-import ReactSwitch from 'react-switch';
+import "./App.css";
+import About from "./Pages/About";
+import BlogPage from "./Pages/BlogPage";
+import Fungicides from "./Pages/Fungicides";
+import Insecticides from "./Pages/Insecticides";
+import Herbicides from "./Pages/Herbicides";
+import Machinery from "./Pages/Machinery";
+import Home from "./Pages/Home";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import SignUp from "./Pages/SignUp";
+import SignIn from "./Pages/SignIn";
+import Profile from "./Pages/Profile";
+import { Provider } from "react-redux";
+import store from "./shared/store";
+import Cart from "./Pages/Cart";
+import Error from "./Pages/Error";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import './App.css';
-
-export const ThemeContext = createContext(null);
-
-function App() {
-  // Theme change
-  const [theme, setTheme] = useState('dark');
-
-  const toggleTheme = () => {
-    setTheme((curr) => (curr === 'light' ? 'dark' : 'light'));
-  };
-
-  // Tasks (ToDo List) State
-  const [toDo, setToDo] = useState([]);
-
-  // Temp State
-  const [newTask, setNewTask] = useState('');
-  const [updateData, setUpdateData] = useState('');
-
-  // Add task
-  const addTask = () => {
-    if (newTask) {
-      let num = toDo.length + 1;
-      let newEntry = { id: num, title: newTask, status: false };
-      setToDo([...toDo, newEntry]);
-      setNewTask('');
-      console.log(toDo);
-    }
-  };
-
-  // Delete task
-  const deleteTask = (id) => {
-    let newTasks = toDo.filter((task) => task.id !== id);
-    setToDo(newTasks);
-  };
-
-  // Mark task as done or completed
-  const markDone = (id) => {
-    let newTask = toDo.map((task) => {
-      if (task.id === id) {
-        return { ...task, status: !task.status };
-      }
-      return task;
-    });
-    setToDo(newTask);
-  };
-
-  // Cancel update
-  const cancelUpdate = () => {
-    setUpdateData('');
-  };
-
-  // Change task for update
-  const changeTask = (e) => {
-    let newEntry = {
-      id: updateData.id,
-      title: e.target.value,
-      status: updateData.status ? true : false,
-    };
-    setUpdateData(newEntry);
-  };
-
-  // Update task
-  const updateTask = () => {
-    let filterRecords = [...toDo].filter((task) => task.id !== updateData.id);
-    let updatedObject = [...filterRecords, updateData];
-    setToDo(updatedObject);
-    setUpdateData('');
-  };
-
+function AppLayout() {
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="container App" id={theme}>
-        <br />
-        <br />
-        <h2>CRUD App</h2>
-        <div className="switch">
-          <label> {theme === 'light' ? 'Light Mode' : 'Dark Mode'}</label>
-          <ReactSwitch onChange={toggleTheme} checked={theme === 'dark'} />
-        </div>
-        <br />
-        <br />
+    <Provider store={store}>
+      <Header />
+      <Outlet />
+      <Footer />
+    </Provider>
+  );
+}
 
-        {updateData && updateData ? (
-          <UpdateForm
-            updateData={updateData}
-            changeTask={changeTask}
-            updateTask={updateTask}
-            cancelUpdate={cancelUpdate}
-          />
-        ) : (
-          <AddTaskForm
-            newTask={newTask}
-            setNewTask={setNewTask}
-            addTask={addTask}
-          />
-        )}
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
 
-        {/* Display ToDos */}
+      {
+        path: "/insecticides",
+        element: <Insecticides />,
+      },
+      {
+        path: "/fungicides",
+        element: <Fungicides />,
+      },
+      {
+        path: "/herbicides",
+        element: <Herbicides />,
+      },
+      {
+        path: "/machinery",
+        element: <Machinery />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/signin",
+        element: <SignIn />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      // {
+      //   path: "restaurant/:resId",
+      //   element: <RestaurantMenu />,
+      // },
+    ],
+  },
+]);
 
-        {toDo && toDo.length ? '' : 'No Tasks...'}
-
-        <ToDo
-          toDo={toDo}
-          markDone={markDone}
-          setUpdateData={setUpdateData}
-          deleteTask={deleteTask}
-        />
-      </div>
-    </ThemeContext.Provider>
+function App(props) {
+  return (
+    <div className="App">
+      <RouterProvider router={appRouter} />
+    </div>
   );
 }
 
