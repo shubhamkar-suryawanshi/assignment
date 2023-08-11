@@ -1,5 +1,6 @@
 import { Container, Typography, Box, Grid, Divider } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -19,18 +20,67 @@ function Footer() {
         <Grid item xs={12} md={6} lg={4}>
           <Typography variant="h6">Products</Typography>
           <Box>
-            <Typography variant="subtitle1">Bestseller</Typography>
-            <Typography variant="subtitle1">Latest Products</Typography>
-            <Typography variant="subtitle1">Special Products</Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/fungicides"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Fungicides
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/herbicides"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Herbicides
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/insecticides"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Insecticides
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/machinery"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Machinery
+              </Link>
+            </Typography>
           </Box>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Typography variant="h6">Service</Typography>
           <Box>
-            <Typography variant="subtitle1">About Us</Typography>
-            <Typography variant="subtitle1">Contact Us</Typography>
-            <Typography variant="subtitle1">Privacy & Policy</Typography>
-            <Typography variant="subtitle1">Terms & Conditions</Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/about"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                About Us
+              </Link>
+            </Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/privacy"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Privacy & Policy
+              </Link>{" "}
+            </Typography>
+            <Typography variant="subtitle1">
+              <Link
+                to="/tandcs"
+                style={{ textDecoration: "none", color: "#000" }}
+              >
+                Terms & Conditions
+              </Link>{" "}
+            </Typography>
           </Box>
         </Grid>
       </Grid>

@@ -1,69 +1,88 @@
 import React from "react";
 import Carousel from "react-material-ui-carousel";
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import hero from "../assets/hero.png";
 import slider from "../assets/slider.png";
+import { Link } from "react-router-dom";
 
 function CarouselComp() {
   return (
     <Carousel>
       <Box>
-        <Typography
-          variant="h6"
+        <Box
           sx={{
             position: "absolute",
             left: "5rem",
             top: "5rem",
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
+            gap: "0.5rem",
           }}
         >
-          <Box>
-            <h1 style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}>
-              Get 40% off
-            </h1>
-            <h2>Organic Fertilizers</h2>
-          </Box>
-        </Typography>
+          <Typography
+            component="h1"
+            variant="h4"
+            style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}
+          >
+            Get 40% off
+          </Typography>
+          <Typography component="h2" variant="h3">
+            Organic Fertilizers
+          </Typography>
+        </Box>
         <Box>
           <img width="100%" src={hero} alt="Plant" />
         </Box>
-        <Typography variant="h6" sx={{ display: { xs: "block", sm: "none" } }}>
-          <Box>
-            <h1 style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}>
-              Get 40% off
-            </h1>
-            <h2>Organic Fertilizers</h2>
-          </Box>
-        </Typography>
+        <Box sx={{ display: { xs: "block", sm: "none" } }}>
+          <Typography
+            component="h1"
+            variant="h4"
+            style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}
+          >
+            Get 40% off
+          </Typography>
+          <Typography component="h2" variant="h3">
+            Organic Fertilizers
+          </Typography>
+        </Box>
       </Box>
       <Box>
-        <Typography
-          variant="h6"
+        <Box
           sx={{
             position: "absolute",
             left: "5rem",
             top: "5rem",
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", sm: "flex" },
+            flexDirection: "column",
+            gap: "0.5rem",
           }}
         >
-          <Box>
-            <h1 style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}>
-              Get 30% off
-            </h1>
-            <h2>Organic Compost</h2>
-          </Box>
-        </Typography>
+          <Typography
+            component="h1"
+            variant="h4"
+            style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}
+          >
+            Get 30% off
+          </Typography>
+          <Typography component="h2" variant="h3">
+            Organic Compost
+          </Typography>
+        </Box>
         <Box>
           <img width="100%" src={slider} alt="Plant" />
         </Box>
-        <Typography variant="h6" sx={{ display: { xs: "block", sm: "none" } }}>
-          <Box>
-            <h1 style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}>
-              Get 30% off
-            </h1>
-            <h2>Organic Compost</h2>
-          </Box>
-        </Typography>
+        <Box sx={{ display: { xs: "block", sm: "none" } }}>
+          <Typography
+            component="h1"
+            variant="h4"
+            style={{ fontFamily: " Pacifico,cursive", color: "#518432" }}
+          >
+            Get 30% off
+          </Typography>
+          <Typography component="h2" variant="h3">
+            Organic Compost
+          </Typography>
+        </Box>
       </Box>
     </Carousel>
   );

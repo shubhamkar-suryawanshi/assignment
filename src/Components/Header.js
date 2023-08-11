@@ -10,6 +10,8 @@ import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import profile from "../assets/prof.png";
 
 import { Link } from "react-router-dom";
 
@@ -23,6 +25,7 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const cartItems = useSelector((store) => store.cart.items);
+  const blogItems = useSelector((store) => store.blog.items);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -53,8 +56,6 @@ function ResponsiveAppBar() {
         >
           <Box
             noWrap
-            component="a"
-            to="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "block" },
@@ -62,7 +63,9 @@ function ResponsiveAppBar() {
               width: "100px",
             }}
           >
-            <img width="100%" src={logo} alt="Logo" />
+            <Link to="/">
+              <img width="100%" src={logo} alt="Logo" />
+            </Link>
           </Box>
 
           <Box sx={{ display: { xs: "block", md: "none" } }}>
@@ -202,7 +205,7 @@ function ResponsiveAppBar() {
             <Box>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Avtar" src="/static/images/avatar/2.jpg" />
+                  <Avatar alt="Avtar" src={profile} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -229,22 +232,52 @@ function ResponsiveAppBar() {
                   component="nav"
                 >
                   <ListItem>
-                    <Link to="/profile">Profile</Link>
+                    <Link
+                      to="/profile"
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      Profile
+                    </Link>
                   </ListItem>
                   <ListItem>
-                    <Link to="/signin">Logout</Link>
+                    <Link
+                      to="/signin"
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      Logout
+                    </Link>
                   </ListItem>
                 </List>
               </Menu>
             </Box>
-            <Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
               <Link to="/cart">
                 <ShoppingCartOutlinedIcon color="success" fontSize="large" />
               </Link>
+              <Typography component="span" color="black">
+                <sup>{cartItems.length}</sup>
+              </Typography>
             </Box>
-            <Typography component="span" color="black" fontSize="large">
-              {cartItems.length}
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-start",
+                alignItems: "flex-start",
+              }}
+            >
+              <Link to="/blog-cart">
+                <FavoriteBorderOutlinedIcon color="success" fontSize="large" />
+              </Link>
+              <Typography component="span" color="black">
+                <sup>{blogItems.length}</sup>
+              </Typography>
+            </Box>
           </Box>
         </Toolbar>
       </Container>

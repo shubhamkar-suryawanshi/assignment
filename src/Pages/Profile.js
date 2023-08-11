@@ -1,16 +1,32 @@
 import React from "react";
 import { IconButton, Avatar, Box, Typography } from "@mui/material";
+import bg from "../assets/bg1.jpg";
+import prof from "../assets/prof.png";
 
 function Profile() {
   return (
     <React.Fragment>
       <Box>
-        <IconButton>
-          <Avatar alt="Profile Photo" src="/static/images/avatar/2.jpg" />
-        </IconButton>
-        <Typography>Shubhamkar Suryawanshi</Typography>
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
+          <img width="100%" src={bg} alt="Background" />
+        </Box>
+        <Box
+          sx={{
+            width: "10%",
+            marginX: "auto",
+          }}
+        >
+          <img width="100%" src={prof} alt="Logo" />
+        </Box>
       </Box>
       <Box>
+        <Typography variant="h6" component="h6">
+          Shubhamkar Suryawanshi
+        </Typography>
         <Box>
           <Typography
             variant="body1"
@@ -32,7 +48,7 @@ function Profile() {
             Email:
           </Typography>{" "}
           <Typography variant="subtitle2" component="span">
-            kshubhamkar.kop@gmail.com
+            shubhamkar.kop@gmail.com
           </Typography>
         </Box>
         <Box>

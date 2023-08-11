@@ -34,19 +34,25 @@ function ProductCard() {
               image={item.img}
             />
             <CardContent>
-              <Typography>{item.size}</Typography>
-              <Typography variant="h5" component="div">
+              <Typography variant="p" sx={{ color: "#18d39e" }}>
+                {item.size}
+              </Typography>
+              <Typography variant="h5" component="p" sx={{ fontWeight: "500" }}>
                 {item.company}
               </Typography>
               <Typography variant="body2">{item.catagory}</Typography>
               <Box>
                 <Typography
-                  sx={{ textDecoration: "line-through" }}
+                  sx={{ textDecoration: "line-through", color: "#a1a1a1" }}
                   component="span"
                 >
                   {item.mrp}
                 </Typography>{" "}
-                <Typography component="span">{item.discounted}</Typography>
+                <Typography component="span">| {item.discounted} </Typography>
+                <Typography component="span" sx={{ color: "#18d39e" }}>
+                  {" "}
+                  {item.percOff}
+                </Typography>
               </Box>
             </CardContent>
             <CardActions

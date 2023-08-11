@@ -1,5 +1,6 @@
 import { Button, Box, Container, Typography } from "@mui/material";
 import plant from "../assets/plant.png";
+import { Link } from "react-router-dom";
 
 function Editorial() {
   return (
@@ -35,7 +36,9 @@ function Editorial() {
       </Typography>
 
       <Button variant="contained" color="success">
-        Read More
+        <Link to="/about" style={{ textDecoration: "none", color: "#fff" }}>
+          Read More
+        </Link>
       </Button>
     </Container>
   );

@@ -9,7 +9,7 @@ import { Box, Button, CardActions } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { addItem } from "../shared/cartSlice";
 
-function ProductCard({ items, dummy }) {
+function PurchasedProduct({ items, dummy }) {
   const dispatch = useDispatch();
 
   const handleAddItem = (item) => {
@@ -24,6 +24,7 @@ function ProductCard({ items, dummy }) {
             width: "100%",
             boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
             borderRadius: "1rem",
+            color: "black",
           }}
         >
           <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -71,4 +72,4 @@ function ProductCard({ items, dummy }) {
   );
 }
 
-export default ProductCard;
+export default PurchasedProduct;

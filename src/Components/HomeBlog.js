@@ -1,18 +1,23 @@
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import fungicide from "../assets/fungicide.png";
 
-function HomeBlog(props) {
+function HomeBlog() {
   return (
     <Grid item xs={12} lg={6}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
           <Grid item xs={12} lg={5}>
-            <Box textAlign="center" margin="auto">
-              <img width="100%" src={fungicide} alt="Plant" />
+            <Box>
+              <img width="222px" src={fungicide} alt="Plant" />
             </Box>
           </Grid>
 
-          <Grid item xs={12} lg={7} sx={{ textAlign: "left" }}>
+          <Grid
+            item
+            xs={12}
+            lg={7}
+            sx={{ textAlign: { xs: "center", lg: "left" } }}
+          >
             <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <Typography variant="caption" component="p">
                 January 1, 2023
@@ -27,9 +32,19 @@ function HomeBlog(props) {
                 intelligence, and robotics to accelerate and improve the
                 efficiency of activities throughout the entire production chain.
               </Typography>
-              <Button variant="outlined" color="success">
-                Read More
-              </Button>
+              <Box sx={{ textAlign: { xs: "center", lg: "left" } }}>
+                <Button
+                  variant="outlined"
+                  color="success"
+                  sx={{
+                    width: 200,
+                    paddingY: 1,
+                    paddingX: 2,
+                  }}
+                >
+                  Read More
+                </Button>
+              </Box>
             </Box>
           </Grid>
         </Grid>

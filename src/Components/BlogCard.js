@@ -2,13 +2,14 @@ import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
+import Box from "@mui/material/Box";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteOutlinedIcon from "@mui/icons-material/FavoriteOutlined";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Grid } from "@mui/material";
 import plant from "../assets/plant.png";
@@ -25,11 +26,16 @@ const ExpandMore = styled((props) => {
 }));
 
 function BlogCard() {
+  const [isActive, setIsActive] = React.useState(false);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  function toggleLike() {
+    setIsActive(true);
+  }
 
   return (
     <Grid item xs={12} md={6} lg={4}>
@@ -42,12 +48,9 @@ function BlogCard() {
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2016"
         />
-        <CardMedia
-          component="img"
-          width="100%"
-          image={plant}
-          alt="Paella dish"
-        />
+        <Box>
+          <img width="125px" src={plant} alt="Plant" />
+        </Box>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             This impressive paella is a perfect party dish and a fun meal to
@@ -56,8 +59,12 @@ function BlogCard() {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+          <IconButton aria-label="add to favorites" onClick={toggleLike}>
+            {isActive ? (
+              <FavoriteOutlinedIcon sx={{ color: "green" }} />
+            ) : (
+              <FavoriteIcon />
+            )}
           </IconButton>
 
           <ExpandMore

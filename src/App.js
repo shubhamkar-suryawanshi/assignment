@@ -16,6 +16,9 @@ import { Provider } from "react-redux";
 import store from "./shared/store";
 import Cart from "./Pages/Cart";
 import Error from "./Pages/Error";
+import Privacy from "./Pages/Privacy";
+import TandCs from "./Pages/TandCs";
+import BlogCart from "./Pages/BlogCart";
 
 function AppLayout() {
   return (
@@ -77,6 +80,18 @@ const appRouter = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/blog-cart",
+        element: <BlogCart />,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy />,
+      },
+      {
+        path: "/tandcs",
+        element: <TandCs />,
       },
       // {
       //   path: "restaurant/:resId",

@@ -8,7 +8,8 @@ export const dummyData = [
     company: "Helipro",
     catagory: "Coragen | Heliprogsp",
     mrp: "Rs.999",
-    discounted: "| Rs.630 37%off",
+    discounted: " Rs.630 ",
+    percOff: "37% off",
   },
   {
     img: "https://www.agrowala.com/theme/images/product/img_16905186351291180684.webp",
@@ -16,7 +17,8 @@ export const dummyData = [
     company: "Helipro",
     catagory: "Coragen | Heliprogsp",
     mrp: "Rs.999",
-    discounted: "| Rs.630 37%off",
+    discounted: " Rs.630 ",
+    percOff: "37% off",
   },
   {
     img: "https://www.agrowala.com/theme/images/product/img_16905186351291180684.webp",
@@ -24,7 +26,8 @@ export const dummyData = [
     company: "Helipro",
     catagory: "Coragen | Heliprogsp",
     mrp: "Rs.999",
-    discounted: "| Rs.630 37%off",
+    discounted: " Rs.630 ",
+    percOff: "37% off",
   },
   {
     img: "https://www.agrowala.com/theme/images/product/img_16905186351291180684.webp",
@@ -32,6 +35,16 @@ export const dummyData = [
     company: "Helipro",
     catagory: "Coragen | Heliprogsp",
     mrp: "Rs.999",
-    discounted: "| Rs.630 37%off",
+    discounted: " Rs.630 ",
+    percOff: "37% off",
+  },
+  {
+    img: "https://www.agrowala.com/theme/images/product/img_16905186351291180684.webp",
+    size: "60 ML",
+    company: "Helipro",
+    catagory: "Coragen | Heliprogsp",
+    mrp: "Rs.999",
+    discounted: " Rs.630 ",
+    percOff: "37% off",
   },
 ];
